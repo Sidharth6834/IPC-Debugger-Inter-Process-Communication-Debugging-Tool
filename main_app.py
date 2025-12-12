@@ -6,9 +6,7 @@ import sys
 import time
 
 
-# ---------------------------------------------------------
-# ARROW ANIMATION (IPC TAB)
-# ---------------------------------------------------------
+
 def animate_arrows(canvas, arrow1, arrow2, color):
     canvas.itemconfig(arrow1, fill=color, width=3)
     canvas.update()
@@ -23,9 +21,7 @@ def animate_arrows(canvas, arrow1, arrow2, color):
     canvas.update()
 
 
-# ---------------------------------------------------------
-# IPC BACKEND PROCESS
-# ---------------------------------------------------------
+
 def run_ipc_process(command, output_box, status_label, canvas, arrow1, arrow2, ipc_label_widget):
 
     ipc_mode = command[-1]   # last argument → --pipe / --queue / --shm / --shm-nolock
@@ -45,9 +41,7 @@ def run_ipc_process(command, output_box, status_label, canvas, arrow1, arrow2, i
             output_box.insert(tk.END, line)
             output_box.see(tk.END)
 
-            # --------------------------------------
-            # FIXED COLOR LOGIC BASED ON IPC MODE
-            # --------------------------------------
+           
             if ipc_mode == "--pipe":
                 animate_arrows(canvas, arrow1, arrow2, "yellow")   # bottleneck demo
 
@@ -66,9 +60,6 @@ def run_ipc_process(command, output_box, status_label, canvas, arrow1, arrow2, i
     threading.Thread(target=task).start()
 
 
-# ---------------------------------------------------------
-# DEADLOCK VISUALIZER TAB (Dining Philosophers)
-# ---------------------------------------------------------
 class DeadlockTab:
     THINKING = "thinking"
     HUNGRY = "hungry"
@@ -153,9 +144,6 @@ class DeadlockTab:
         self.canvas.itemconfig(self.state_labels[idx], text=f"P{idx} - {texts[state]}")
         self.canvas.update()
 
-    # -------------------------------------------------
-    # SIMULATE DEADLOCK
-    # -------------------------------------------------
     def simulate_deadlock(self):
         if self.running:
             return
@@ -178,9 +166,7 @@ class DeadlockTab:
         self.deadlock_detected = True
         self.running = False
 
-    # -------------------------------------------------
-    # RESOLVE DEADLOCK
-    # -------------------------------------------------
+  
     def resolve_deadlock(self):
         if not self.deadlock_detected:
             return
@@ -206,9 +192,6 @@ class DeadlockTab:
 
         self.deadlock_detected = False
 
-    # -------------------------------------------------
-    # DRAW CIRCULAR WAIT ARROWS
-    # -------------------------------------------------
     def _show_cycle(self):
         self.cycle_arrows = []
 
@@ -238,9 +221,6 @@ class DeadlockTab:
             time.sleep(0.3)
 
 
-# ---------------------------------------------------------
-# MAIN APPLICATION WITH TABS
-# ---------------------------------------------------------
 def main():
     root = tk.Tk()
     root.title("IPC Debugger + Deadlock Visualizer")
@@ -249,9 +229,7 @@ def main():
     notebook = ttk.Notebook(root)
     notebook.pack(fill="both", expand=True)
 
-    # =====================================================
-    # TAB 1 — IPC DEBUGGER
-    # =====================================================
+   
     ipc_tab = ttk.Frame(notebook)
     notebook.add(ipc_tab, text="IPC Debugger")
 
@@ -305,9 +283,7 @@ def main():
             ]
         ).grid(row=0, column=idx, padx=15)
 
-    # =====================================================
-    # TAB 2 — DEADLOCK VISUALIZER
-    # =====================================================
+   
     deadlock_tab = DeadlockTab(notebook)
     notebook.add(deadlock_tab.frame, text="Deadlock Visualizer")
 
