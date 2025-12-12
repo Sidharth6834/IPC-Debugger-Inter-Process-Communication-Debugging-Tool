@@ -5,9 +5,6 @@ import threading
 import subprocess
 import sys
 
-# ------------------------------
-# Function: Run script & show output
-# ------------------------------
 def run_command(command, output_box, status_label):
     def task():
         status_label.config(text="Running...", fg="blue")
@@ -32,9 +29,7 @@ def run_command(command, output_box, status_label):
     threading.Thread(target=task).start()
 
 
-# ------------------------------
-# GUI Setup
-# ------------------------------
+
 def main_gui():
     root = tk.Tk()
     root.title("IPC Debugger - Step 2 GUI")
@@ -61,9 +56,7 @@ def main_gui():
     status_label = tk.Label(root, text="Idle", fg="black", bg="white", font=("Arial", 12))
     status_label.pack(pady=5)
 
-    # ------------------------------
-    # Buttons with functions
-    # ------------------------------
+  
 
     btn1 = tk.Button(
         frame, text="Run Pipe Demo",
