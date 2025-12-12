@@ -6,9 +6,7 @@ import sys
 import time
 
 
-# ---------------------------------------------------------
-# Animate BOTH arrows (A → IPC → B)
-# ---------------------------------------------------------
+
 def animate_arrows(canvas, arrow1, arrow2, color):
     # A → IPC
     canvas.itemconfig(arrow1, fill=color, width=3)
@@ -26,9 +24,7 @@ def animate_arrows(canvas, arrow1, arrow2, color):
     canvas.update()
 
 
-# ---------------------------------------------------------
-# Run backend + update GUI animations
-# ---------------------------------------------------------
+
 def run_ipc_process(command, output_box, status_label, canvas, arrow1, arrow2, ipc_label_widget):
 
     def task():
@@ -64,9 +60,7 @@ def run_ipc_process(command, output_box, status_label, canvas, arrow1, arrow2, i
     threading.Thread(target=task).start()
 
 
-# ---------------------------------------------------------
-# MAIN GUI
-# ---------------------------------------------------------
+
 def main_gui():
     root = tk.Tk()
     root.title("IPC Debugger - Visual GUI (Step 4)")
@@ -81,9 +75,7 @@ def main_gui():
         bg="white"
     ).pack(pady=15)
 
-    # -------------------------------------
-    # CANVAS (Visual Area)
-    # -------------------------------------
+    
     canvas = tk.Canvas(root, width=1000, height=250, bg="white", highlightthickness=0)
     canvas.pack(pady=10)
 
@@ -103,9 +95,7 @@ def main_gui():
     arrow1 = canvas.create_line(240, 120, 380, 120, arrow=tk.LAST, width=2)  # A → IPC
     arrow2 = canvas.create_line(560, 120, 700, 120, arrow=tk.LAST, width=2)  # IPC → B
 
-    # -------------------------------------
-    # OUTPUT LOG (Terminal inside GUI)
-    # -------------------------------------
+ 
     output_box = scrolledtext.ScrolledText(root, height=18, width=115)
     output_box.pack(pady=10)
 
