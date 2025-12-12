@@ -6,9 +6,6 @@ import threading
 import time
 
 
-# ------------------------------
-# Function to animate arrow
-# ------------------------------
 def animate_arrow(canvas, arrow_id, color):
     canvas.itemconfig(arrow_id, fill=color, width=3)
     canvas.update()
@@ -18,9 +15,6 @@ def animate_arrow(canvas, arrow_id, color):
     time.sleep(0.3)
 
 
-# ------------------------------
-# Run a backend IPC command and update GUI
-# ------------------------------
 def run_ipc_process(command, output_box, status_label, canvas, arrow_id):
 
     def task():
@@ -56,9 +50,7 @@ def run_ipc_process(command, output_box, status_label, canvas, arrow_id):
     threading.Thread(target=task).start()
 
 
-# ------------------------------
-# MAIN GUI (Visual + Buttons + Logs)
-# ------------------------------
+
 def main_gui():
     root = tk.Tk()
     root.title("IPC Debugger - Visual GUI (Step 3)")
@@ -92,9 +84,6 @@ def main_gui():
     # Arrow between A → IPC → B
     arrow_id = canvas.create_line(200, 100, 350, 100, arrow=tk.LAST, width=2)
 
-    # ------------------------------
-    # Output log box
-    # ------------------------------
     output_box = scrolledtext.ScrolledText(root, height=15, width=100)
     output_box.pack(pady=10)
 
@@ -105,9 +94,7 @@ def main_gui():
     )
     status_label.pack(pady=5)
 
-    # ------------------------------
-    # Buttons
-    # ------------------------------
+ 
     frame = tk.Frame(root, bg="white")
     frame.pack(pady=10)
 
