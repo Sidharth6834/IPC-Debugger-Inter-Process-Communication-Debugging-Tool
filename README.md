@@ -1,0 +1,1 @@
+IPC Debugger Tool is a Python-based GUI simulator that visualizes Inter-Process Communication methods like pipes, message queues, and shared memory. It helps users understand process states, synchronization, and race conditions through interactive, real-time visual debugging.
